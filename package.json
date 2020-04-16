@@ -1,0 +1,31 @@
+{
+  "name": "difference_calculator",
+  "version": "1.0.0",
+  "description": "second project",
+  "main": "src/index.js",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alextula26/frontend-project-lvl2.git"
+  },
+  "author": "alextula26",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alextula26/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/alextula26/frontend-project-lvl2#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
+}
