@@ -2,7 +2,11 @@ install:
 	npm install
 
 start:
-	npx babel-node bin/gendiff.js
+	npx babel-node src/bin/gendiff.js
+
+build:
+	rm -rf dist
+	npm run build
 
 lint:
 	npx eslint .
