@@ -18,8 +18,8 @@ jobs:
         node-version: [13.x]
 
     steps:
-        # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
+      # Check-out repository under GitHub workspace
+      # https://github.com/actions/checkout
       - uses: actions/checkout@v2
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
@@ -50,3 +50,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ 9edd560a026f5baa7cf5d8961f0f0cc6f77dce4f5e03f03804ea0b097f12ffff }}
         with:
           coverageCommand: make test-coverage
+          debug: true
