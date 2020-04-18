@@ -1,4 +1,4 @@
-#Differences generation
+# Differences generation
 
 ## Install project
 ##### make install

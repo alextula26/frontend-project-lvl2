@@ -1,4 +1,4 @@
-import { union, keys, has } from 'lodash';
+import _ from 'lodash';
 
 const separator = '\n';
 
@@ -7,18 +7,18 @@ const actions = [
     action: 'update',
     get: (data1, data2, key, acc) => {
       if (data1[key] === data2[key]) {
-        return [...acc, [' ', key, data1[key]]];
+        return [...acc, ['  ', key, data1[key]]];
       }
-      return [...acc, ['+', key, data2[key]], ['-', key, data1[key]]];
+      return [...acc, [' +', key, data2[key]], [' -', key, data1[key]]];
     },
   },
   {
     action: 'delete',
-    get: (data1, data2, key, acc) => [...acc, ['-', key, data1[key]]],
+    get: (data1, data2, key, acc) => [...acc, [' -', key, data1[key]]],
   },
   {
     action: 'add',
-    get: (data1, data2, key, acc) => [...acc, ['+', key, data2[key]]],
+    get: (data1, data2, key, acc) => [...acc, [' +', key, data2[key]]],
   },
 ];
 
@@ -33,13 +33,13 @@ const compareResultToString = (array) => {
 };
 
 const compare = (data1, data2) => {
-  const uniqKeys = union(keys(data1), keys(data2));
+  const uniqKeys = _.union(_.keys(data1), _.keys(data2));
   const result = uniqKeys.reduce((acc, key) => {
-    if (has(data1, key) && has(data2, key, acc)) {
+    if (_.has(data1, key) && _.has(data2, key)) {
       return getCompareResult('update', data1, data2, key, acc);
     }
 
-    if (has(data1, key) && !has(data2, key, acc)) {
+    if (_.has(data1, key) && !_.has(data2, key)) {
       return getCompareResult('delete', data1, data2, key, acc);
     }
 
