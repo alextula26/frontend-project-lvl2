@@ -9,3 +9,6 @@
 
 ## Launch compares two configuration json files and shows a difference
 [![asciicast](https://asciinema.org/a/makc0E1gxUSpF20p3PmRsK60k.svg)](https://asciinema.org/a/makc0E1gxUSpF20p3PmRsK60k)
+
+## Launch compares two configuration yml files and shows a difference
+[![asciicast](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa.svg)](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa)
