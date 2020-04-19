@@ -23,6 +23,7 @@ export default (beforeConfigFilePath, afterConfigFilePath) => {
 
   const beforeConfigData = parser(beforeConfigFileContent, beforeFileExtension);
   const afterConfigData = parser(afterConfigFileContent, afterFileExtension);
-
+  console.log(beforeConfigData);
+  console.log(afterConfigData);
   return compare(beforeConfigData, afterConfigData);
 };
