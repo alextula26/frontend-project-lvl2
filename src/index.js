@@ -1,15 +1,18 @@
 import fs from 'fs';
 import path from 'path';
+import parser from './parser.js';
 import compare from './compare.js';
 
-export default (filepath1, filepath2) => {
-  const fullPathFile1 = path.resolve(process.cwd(), `${filepath1}`);
-  const fullPathFile2 = path.resolve(process.cwd(), `${filepath2}`);
-  let file1;
-  let file2;
+export default (beforeConfigFilePath, afterConfigFilePath) => {
+  const beforeConfigFileFullPath = path.resolve(process.cwd(), `${beforeConfigFilePath}`);
+  const afterConfigFileFullPath = path.resolve(process.cwd(), `${afterConfigFilePath}`);
+  const beforeFileExtension = path.extname(beforeConfigFileFullPath).slice(1);
+  const afterFileExtension = path.extname(afterConfigFileFullPath).slice(1);
+  let beforeConfigFileContent;
+  let afterConfigFileContent;
   try {
-    file1 = fs.readFileSync(fullPathFile1, 'utf-8');
-    file2 = fs.readFileSync(fullPathFile2, 'utf-8');
+    beforeConfigFileContent = fs.readFileSync(beforeConfigFileFullPath, 'utf-8');
+    afterConfigFileContent = fs.readFileSync(afterConfigFileFullPath, 'utf-8');
   } catch (e) {
     if (e.code === 'ENOENT') {
       console.log('Путь до файл не верный или файл не существует');
@@ -17,8 +20,9 @@ export default (filepath1, filepath2) => {
       throw e;
     }
   }
-  const data1 = JSON.parse(file1);
-  const data2 = JSON.parse(file2);
 
-  return compare(data1, data2);
+  const beforeConfigData = parser(beforeConfigFileContent, beforeFileExtension);
+  const afterConfigData = parser(afterConfigFileContent, afterFileExtension);
+
+  return compare(beforeConfigData, afterConfigData);
 };
