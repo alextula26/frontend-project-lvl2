@@ -2,6 +2,7 @@
 
 ![Node CI](https://github.com/alextula26/frontend-project-lvl2/workflows/Node%20CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/988a57e71cbdf32d46c8/maintainability)](https://codeclimate.com/github/alextula26/frontend-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/988a57e71cbdf32d46c8/test_coverage)](https://codeclimate.com/github/alextula26/frontend-project-lvl2/test_coverage)
 
 ## Install project
 ##### make install
