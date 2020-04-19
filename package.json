@@ -1,6 +1,6 @@
 {
   "name": "gendiff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "second project",
   "main": "dist/index.js",
   "bin": {
