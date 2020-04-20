@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
-import compare from './compare.js';
+import buildStatDiff from './compare.js';
 
 export default (beforeConfigFilePath, afterConfigFilePath) => {
   const beforeConfigFileFullPath = path.resolve(process.cwd(), `${beforeConfigFilePath}`);
@@ -24,5 +24,5 @@ export default (beforeConfigFilePath, afterConfigFilePath) => {
   const beforeConfigData = parser(beforeConfigFileContent, beforeFileExtension);
   const afterConfigData = parser(afterConfigFileContent, afterFileExtension);
 
-  return compare(beforeConfigData, afterConfigData);
+  return buildStatDiff(beforeConfigData, afterConfigData);
 };

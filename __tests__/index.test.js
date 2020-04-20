@@ -11,16 +11,17 @@ const result = `{
   + children: true
 }`;
 
-test('gendiff json', () => {
-  const filepath1 = `${__dirname}/../__fixtures__/before.json`;
-  const filepath2 = `${__dirname}/../__fixtures__/after.json`;
-  const diff = gendiff(filepath1, filepath2);
-  expect(diff).toEqual(result);
-});
+const testFilePath = `${__dirname}/../__fixtures__/`;
 
-test('gendiff yml', () => {
-  const filepath1 = `${__dirname}/../__fixtures__/before.yml`;
-  const filepath2 = `${__dirname}/../__fixtures__/after.yml`;
-  const diff = gendiff(filepath1, filepath2);
-  expect(diff).toEqual(result);
+describe.each([
+  'json',
+  'yml',
+  'ini',
+])('gendiff %s', (expans) => {
+  test('gendiff', () => {
+    const filepath1 = `${testFilePath}before.${expans}`;
+    const filepath2 = `${testFilePath}after.${expans}`;
+    const diff = gendiff(filepath1, filepath2);
+    expect(diff).toEqual(result);
+  });
 });

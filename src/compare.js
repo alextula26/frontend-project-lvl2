@@ -2,34 +2,33 @@ import _ from 'lodash';
 
 const separator = '\n';
 
-const getValue = (before, after, key) => (
-  {
-    value: after[key], valueOld: before[key],
-  }
-);
+const getPropertyState = (before, after, key) => {
+  const getValue = (name) => ({ value: after[name], valueOld: before[name] });
+  const propertyActions = [
+    {
+      state: 'added',
+      check: (name) => !_.has(before, name) && _.has(after, name),
+      getValue,
+    },
+    {
+      state: 'deleted',
+      check: (name) => _.has(before, name) && !_.has(after, name),
+      getValue,
+    },
+    {
+      state: 'unchanged',
+      check: (name) => before[name] === after[name],
+      getValue,
+    },
+    {
+      state: 'changed',
+      check: (name) => before[name] !== after[name],
+      getValue,
+    },
+  ];
 
-const propertyActions = [
-  {
-    state: 'added',
-    check: (before, after, key) => !_.has(before, key) && _.has(after, key),
-    getValue,
-  },
-  {
-    state: 'deleted',
-    check: (before, after, key) => _.has(before, key) && !_.has(after, key),
-    getValue,
-  },
-  {
-    state: 'unchanged',
-    check: (before, after, key) => before[key] === after[key],
-    getValue,
-  },
-  {
-    state: 'changed',
-    check: (before, after, key) => before[key] !== after[key],
-    getValue,
-  },
-];
+  return propertyActions.find(({ check }) => check(key));
+};
 
 const propertyState = {
   added: (data) => `+ ${data.key}: ${data.value}`,
@@ -46,20 +45,20 @@ const getDataToString = (data) => {
   return `{${separator}${str}}`;
 };
 
-const getPropertyActions = (before, after, key) => {
-  // eslint-disable-next-line no-shadow
-  const { state, getValue } = propertyActions.find(({ check }) => check(before, after, key));
-  const value = getValue(before, after, key);
+const getPropertyAction = (before, after, key) => {
+  const { state, getValue } = getPropertyState(before, after, key);
+  const value = getValue(key);
   return { key, state, ...value };
 };
 
-const buildData = (before, after) => {
+const buildStatDiff = (before, after) => {
   const uniqKeys = _.union(_.keys(before), _.keys(after));
-  const result = uniqKeys.reduce((acc, key) => {
-    const item = getPropertyActions(before, after, key);
-    return [...acc, item];
+  const statDiffData = uniqKeys.reduce((acc, key) => {
+    const data = getPropertyAction(before, after, key);
+    return [...acc, data];
   }, []);
-  return getDataToString(result);
+
+  return getDataToString(statDiffData);
 };
 
-export default buildData;
+export default buildStatDiff;

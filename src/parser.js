@@ -1,4 +1,5 @@
 import yaml from 'js-yaml';
+import ini from 'ini';
 
 export default (str, format) => {
   switch (format) {
@@ -6,7 +7,9 @@ export default (str, format) => {
       return JSON.parse(str);
     case 'yml':
       return yaml.load(str);
+    case 'ini':
+      return ini.parse(str);
     default:
-      return false;
+      return JSON.parse(str);
   }
 };

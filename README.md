@@ -12,3 +12,6 @@
 
 ## Launch compares two configuration yml files and shows a difference
 [![asciicast](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa.svg)](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa)
+
+## Launch compares two configuration ini files and shows a difference
+[![asciicast](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7.svg)](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7)
