@@ -53,12 +53,11 @@ const getPropertyActions = (before, after, key) => {
 
 const buildStatDiff = (before, after) => {
   const uniqKeys = _.union(_.keys(before), _.keys(after));
-  const statDiffData = uniqKeys.reduce((acc, key) => {
+  return uniqKeys.reduce((acc, key) => {
     const { state, func } = getPropertyActions(before, after, key);
     const data = func(key, buildStatDiff);
     return [...acc, { key, state, ...data }];
   }, []);
-  return statDiffData;
 };
 
 export default buildStatDiff;

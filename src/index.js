@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
-import buildStatDiff from './compare.js';
+import buildStatDiff from './gendiff.js';
 
 const recursionFormater = (data) => {
   console.log(data);
