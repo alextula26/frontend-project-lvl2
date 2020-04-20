@@ -3,7 +3,22 @@ import path from 'path';
 import parser from './parser.js';
 import buildStatDiff from './compare.js';
 
-export default (beforeConfigFilePath, afterConfigFilePath) => {
+const recursionFormater = (data) => {
+  console.log(data);
+  return data;
+};
+const jsonFormater = (data) => JSON.stringify(data);
+
+const formater = (data, type) => {
+  const format = {
+    recursion: recursionFormater,
+    json: jsonFormater,
+  };
+
+  return format[type](data);
+};
+
+export default (beforeConfigFilePath, afterConfigFilePath, type) => {
   const beforeConfigFileFullPath = path.resolve(process.cwd(), `${beforeConfigFilePath}`);
   const afterConfigFileFullPath = path.resolve(process.cwd(), `${afterConfigFilePath}`);
   const beforeFileExtension = path.extname(beforeConfigFileFullPath).slice(1);
@@ -24,6 +39,6 @@ export default (beforeConfigFilePath, afterConfigFilePath) => {
   const beforeConfigData = parser(beforeConfigFileContent, beforeFileExtension);
   const afterConfigData = parser(afterConfigFileContent, afterFileExtension);
   const result = buildStatDiff(beforeConfigData, afterConfigData);
-  console.log(result);
+  console.log(formater(result, type));
   return true;
 };
