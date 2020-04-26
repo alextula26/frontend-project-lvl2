@@ -1,13 +1,13 @@
 import json from './json.js';
 import recursion from './recursion.js';
 
-const formater = (data, type) => {
-  const format = {
+const getFormater = (data, type) => {
+  const formater = {
     recursion,
     json,
   };
 
-  return format[type](data);
+  return formater[type](data);
 };
 
-export default formater;
+export default (data, type) => getFormater(data, type);

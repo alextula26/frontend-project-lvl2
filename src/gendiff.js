@@ -15,7 +15,7 @@ const getPropertyActions = (before, after, property) => {
     {
       state: 'children',
       check: (key) => _.isObject(before[key]) && _.isObject(after[key]),
-      action: (key, f) => ({ children: f(before[key], after[key]) }),
+      action: (key, fn) => ({ children: fn(before[key], after[key]) }),
     },
     {
       state: 'unchanged',
