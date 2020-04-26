@@ -1,61 +1,42 @@
 import _ from 'lodash';
 
-// const separator = '\n';
-
-const getPropertyActions = (before, after, key) => {
+const getPropertyActions = (before, after, property) => {
   const propertyActions = [
     {
       state: 'added',
-      check: (name) => !_.has(before, name) && _.has(after, name),
-      func: (name) => ({ value: after[name], valueOld: before[name] }),
+      check: (key) => !_.has(before, key) && _.has(after, key),
+      action: (key) => ({ value: after[key], valueOld: before[key] }),
     },
     {
       state: 'deleted',
-      check: (name) => _.has(before, name) && !_.has(after, name),
-      func: (name) => ({ value: after[name], valueOld: before[name] }),
+      check: (key) => _.has(before, key) && !_.has(after, key),
+      action: (key) => ({ value: after[key], valueOld: before[key] }),
     },
     {
       state: 'children',
-      check: (name) => _.isObject(before[name]) && _.isObject(after[name]),
-      func: (name, f) => ({ children: f(before[name], after[name]) }),
+      check: (key) => _.isObject(before[key]) && _.isObject(after[key]),
+      action: (key, f) => ({ children: f(before[key], after[key]) }),
     },
     {
       state: 'unchanged',
-      check: (name) => before[name] === after[name],
-      func: (name) => ({ value: after[name], valueOld: before[name] }),
+      check: (key) => before[key] === after[key],
+      action: (key) => ({ value: after[key], valueOld: before[key] }),
     },
     {
       state: 'changed',
-      check: (name) => before[name] !== after[name],
-      func: (name) => ({ value: after[name], valueOld: before[name] }),
+      check: (key) => before[key] !== after[key],
+      action: (key) => ({ value: after[key], valueOld: before[key] }),
     },
   ];
 
-  return propertyActions.find(({ check }) => check(key));
+  return propertyActions.find(({ check }) => check(property));
 };
 
-/* const propertyState = {
-  added: (data) => `+ ${data.key}: ${data.value}`,
-  deleted: (data) => `- ${data.key}: ${data.valueOld}`,
-  unchanged: (data) => `  ${data.key}: ${data.value}`,
-  changed: (data) => `+ ${data.key}: ${data.value}${separator}  - ${data.key}: ${data.valueOld}`,
-  children: (data, f) => f(data),
-}; */
-
-/* const getDataToString = (data) => {
-  console.log(data);
-  const str = data.reduce((acc, item) => {
-    const { state } = item;
-    return `${acc}  ${propertyState[state](item, getDataToString)}${separator}`;
-  }, '');
-  return `{${separator}${str}}`;
-}; */
-
 const buildStatDiff = (before, after) => {
-  const uniqKeys = _.union(_.keys(before), _.keys(after));
-  return uniqKeys.reduce((acc, key) => {
-    const { state, func } = getPropertyActions(before, after, key);
-    const data = func(key, buildStatDiff);
+  const unionKeys = _.union(_.keys(before), _.keys(after));
+  return unionKeys.reduce((acc, key) => {
+    const { state, action } = getPropertyActions(before, after, key);
+    const data = action(key, buildStatDiff);
     return [...acc, { key, state, ...data }];
   }, []);
 };

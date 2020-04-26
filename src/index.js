@@ -2,21 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import parser from './parser.js';
 import buildStatDiff from './gendiff.js';
-
-const recursionFormater = (data) => {
-  console.log(data);
-  return data;
-};
-const jsonFormater = (data) => JSON.stringify(data);
-
-const formater = (data, type) => {
-  const format = {
-    recursion: recursionFormater,
-    json: jsonFormater,
-  };
-
-  return format[type](data);
-};
+import formater from './formatters/index.js';
 
 export default (beforeConfigFilePath, afterConfigFilePath, type) => {
   const beforeConfigFileFullPath = path.resolve(process.cwd(), `${beforeConfigFilePath}`);
