@@ -1,9 +1,9 @@
 
 group1:
   aaa: true
-  bbb: 300
+  bbb: text 3
   ccc: Value 1
-  eee: true
+  eee: false
   hhh:
     key1: value 1
     key2: value 2
@@ -12,4 +12,4 @@ group2:
   nest:
     key: value
 group4:
-  yyy: 100500
+  yyy: text 4

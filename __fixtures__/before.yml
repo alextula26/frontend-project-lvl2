@@ -1,7 +1,7 @@
 
 group1:
   ccc: Value 1
-  ddd: 200
+  ddd: text 2
   eee:
     key: value
   fff:
@@ -13,5 +13,5 @@ group2:
   ggg: ggg
   nest: str
 group3:
-  xxx: 12345
+  xxx: "text 2"
 

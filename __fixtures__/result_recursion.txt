@@ -1,13 +1,13 @@
 {
     group1: {
       + aaa: true
-      + bbb: 300
+      + bbb: text 3
         ccc: Value 1
-      - ddd: 200
+      - ddd: text 2
       - eee: {
             key: value
         }
-      + eee: true
+      + eee: false
       - fff: {
             key: value
         }
@@ -26,9 +26,9 @@
         }
     }
   - group3: {
-        xxx: 12345
+        xxx: text 2
     }
   + group4: {
-        yyy: 100500
+        yyy: text 4
     }
 }

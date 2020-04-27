@@ -16,7 +16,7 @@ const getValueAction = (val) => {
       check: (value) => _.isObject(value),
       action: (value, indent) => {
         const result = _.keys(value)
-          .map((key) => `${countTabs(indent)}    ${key}: ${value[key]}`);
+          .map((key) => `${countTabs(indent)}${' '.repeat(4)}${key}: ${value[key]}`);
         return `{${separator}${result.join(separator)}${separator}${countTabs(indent)}}`;
       },
     },
