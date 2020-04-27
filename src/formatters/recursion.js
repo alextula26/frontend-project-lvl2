@@ -33,7 +33,7 @@ const stringify = (value, indent) => {
 const getPropertyAction = (data) => {
   const propertyAction = {
     unchanged: ({ key, value }, indent) => `${countSpaces(indent)}  ${key}: ${stringify(value, indent)}`,
-    changed: ({ key, value, valueOld }, indent) => [`${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`, `${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`],
+    changed: ({ key, value, valueOld }, indent) => [`${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`, `${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`],
     deleted: ({ key, valueOld }, indent) => `${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`,
     added: ({ key, value }, indent) => `${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`,
     children: ({ key, children }, indent, fn) => `${countSpaces(indent)}  ${key}: ${['{', fn(children, indent + 1), `${countSpaces(indent)}  }`].join(separator)}`,

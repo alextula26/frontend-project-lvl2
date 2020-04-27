@@ -1,5 +1,15 @@
-name: Alexander
-age: 30
-country: Russia
-job: true
-children: true
+
+group1:
+  aaa: true
+  bbb: 300
+  ccc: Value 1
+  eee: true
+  hhh:
+    key1: value 1
+    key2: value 2
+group2:
+  kkk: kkk
+  nest:
+    key: value
+group4:
+  yyy: 100500

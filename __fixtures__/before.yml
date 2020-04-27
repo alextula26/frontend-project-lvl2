@@ -1,4 +1,17 @@
-name: Alexander
-age: 15
-country: Kazakhstan
-job: false
+
+group1:
+  ccc: Value 1
+  ddd: 200
+  eee:
+    key: value
+  fff:
+    key: value
+  hhh:
+    key1: value 1
+    key3: value 3
+group2:
+  ggg: ggg
+  nest: str
+group3:
+  xxx: 12345
+

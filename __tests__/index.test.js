@@ -1,27 +1,22 @@
+import fs from 'fs';
 import gendiff from '../src/index.js';
 
-const result = `{
-    name: Alexander
-  + age: 30
-  - age: 15
-  + country: Russia
-  - country: Kazakhstan
-  + job: true
-  - job: false
-  + children: true
-}`;
+const testFilesPath = `${__dirname}/../__fixtures__/`;
+const expans = ['json', 'yml', 'ini'];
 
-const testFilePath = `${__dirname}/../__fixtures__/`;
+let resultJson;
+let resultRecursion;
 
-describe.each([
-  'json',
-  'yml',
-  'ini',
-])('gendiff %s', (expans) => {
+beforeEach(() => {
+  resultJson = fs.readFileSync(`${testFilesPath}result_json.txt`, 'utf-8');
+  resultRecursion = fs.readFileSync(`${testFilesPath}result_recursion.txt`, 'utf-8');
+});
+
+describe.each(expans)('gendiff %s', (exp) => {
+  const before = `${testFilesPath}before.${exp}`;
+  const after = `${testFilesPath}after.${exp}`;
   test('gendiff', () => {
-    const filepath1 = `${testFilePath}before.${expans}`;
-    const filepath2 = `${testFilePath}after.${expans}`;
-    const diff = gendiff(filepath1, filepath2);
-    expect(diff).toEqual(result);
+    expect(gendiff(before, after, 'json')).toEqual(resultJson.trim());
+    expect(gendiff(before, after, 'recursion')).toEqual(resultRecursion.trim());
   });
 });

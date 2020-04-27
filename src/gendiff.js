@@ -34,11 +34,14 @@ const getPropertyActions = (before, after, property) => {
 
 const buildStatDiff = (before, after) => {
   const unionKeys = _.union(_.keys(before), _.keys(after));
-  return unionKeys.reduce((acc, key) => {
-    const { state, action } = getPropertyActions(before, after, key);
-    const data = action(key, buildStatDiff);
-    return [...acc, { key, state, ...data }];
-  }, []);
+  return unionKeys
+    .slice()
+    .sort()
+    .reduce((acc, key) => {
+      const { state, action } = getPropertyActions(before, after, key);
+      const data = action(key, buildStatDiff);
+      return [...acc, { key, state, ...data }];
+    }, []);
 };
 
 export default buildStatDiff;

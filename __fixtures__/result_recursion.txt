@@ -1,0 +1,34 @@
+{
+    group1: {
+      + aaa: true
+      + bbb: 300
+        ccc: Value 1
+      - ddd: 200
+      - eee: {
+            key: value
+        }
+      + eee: true
+      - fff: {
+            key: value
+        }
+        hhh: {
+            key1: value 1
+          + key2: value 2
+          - key3: value 3
+        }
+    }
+    group2: {
+      - ggg: ggg
+      + kkk: kkk
+      - nest: str
+      + nest: {
+            key: value
+        }
+    }
+  - group3: {
+        xxx: 12345
+    }
+  + group4: {
+        yyy: 100500
+    }
+}
