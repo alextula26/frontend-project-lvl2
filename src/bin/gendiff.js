@@ -3,7 +3,7 @@ import program from 'commander';
 import gendiff from '../index.js';
 
 program
-  .version('1.0.5', '-V, --version', 'output the version number')
+  .version('1.0.6', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format json|recursion|plain', 'json')
   .arguments('<firstConfig> <secondConfig>')

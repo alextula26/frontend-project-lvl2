@@ -1,3 +1,5 @@
+const separator = '\n';
+
 const stringify = (data) => (
   data
 );
@@ -7,7 +9,7 @@ const getPropertyAction = (data) => {
     changed: (keys, { value, valueOld }) => `Property '${keys.join('.')}' was changed from ${stringify(valueOld)} to ${stringify(value)}`,
     deleted: (keys) => `Property '${keys.join('.')}' was deleted`,
     added: (keys, { value }) => `Property '${keys.join('.')}' was added with value: ${stringify(value)}`,
-    children: (keys, { children }, fn) => fn(children, keys).flat(),
+    children: (keys, { children }, fn) => fn(children, keys),
   };
   return propertyAction[data.state];
 };
@@ -19,6 +21,8 @@ export default (coll) => {
       const state = getPropertyAction(data);
       const keys = [...acc, data.key];
       return state(keys, data, render);
-    });
-  return render(coll, []).flat().join('\n');
+    })
+    .flat()
+    .join(separator);
+  return render(coll, []);
 };
