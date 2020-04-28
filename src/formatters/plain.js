@@ -6,8 +6,8 @@ const getPropertyAction = (data) => {
   const propertyAction = {
     changed: (keys, { value, valueOld }) => `Property '${keys.join('.')}' was changed from ${stringify(valueOld)} to ${stringify(value)}`,
     deleted: (keys) => `Property '${keys.join('.')}' was deleted`,
-    added: (keys, { value }) => `Property '${keys.join('.')}' was added with value: ${stringify(value)}}`,
-    children: (keys, { children }, fn) => fn(children, keys),
+    added: (keys, { value }) => `Property '${keys.join('.')}' was added with value: ${stringify(value)}`,
+    children: (keys, { children }, fn) => fn(children, keys).flat(),
   };
   return propertyAction[data.state];
 };
@@ -20,5 +20,5 @@ export default (coll) => {
       const keys = [...acc, data.key];
       return state(keys, data, render);
     });
-  return render(coll, []);
+  return render(coll, []).flat().join('\n');
 };
