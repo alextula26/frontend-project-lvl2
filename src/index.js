@@ -25,5 +25,6 @@ export default (beforeConfigFilePath, afterConfigFilePath, type) => {
   const beforeConfigData = parser(beforeConfigFileContent, beforeFileExtension);
   const afterConfigData = parser(afterConfigFileContent, afterFileExtension);
   const result = buildStatDiff(beforeConfigData, afterConfigData);
-  return formater(result, type);
+  console.log(formater(result, type));
+  return true;
 };
