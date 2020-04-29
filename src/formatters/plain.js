@@ -9,11 +9,11 @@ const getValueAction = (val) => {
       action: () => '[complex value]',
     },
     {
-      check: (value) => typeof value === 'string',
+      check: (value) => _.isString(value),
       action: (value) => `'${value}'`,
     },
     {
-      check: (value) => typeof value === 'boolean',
+      check: (value) => _.isBoolean(value),
       action: (value) => value,
     },
   ];
@@ -36,15 +36,15 @@ const getPropertyAction = (data) => {
   return propertyAction[data.state];
 };
 
-export default (coll) => {
-  const render = (arr, acc) => arr
+export default (tree) => {
+  const render = (data, acc) => data
     .filter(({ state }) => state !== 'unchanged')
-    .map((data) => {
-      const state = getPropertyAction(data);
-      const keys = [...acc, data.key];
-      return state(keys, data, render);
+    .map((node) => {
+      const state = getPropertyAction(node);
+      const keys = [...acc, node.key];
+      return state(keys, node, render);
     })
     .flat()
     .join(separator);
-  return render(coll, []);
+  return render(tree, []);
 };

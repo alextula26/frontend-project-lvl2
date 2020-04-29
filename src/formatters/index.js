@@ -1,11 +1,11 @@
 import json from './json.js';
-import recursion from './recursion.js';
+import tree from './tree.js';
 import plain from './plain.js';
 
 const getFormater = (data, type) => {
   const formater = {
     json,
-    recursion,
+    tree,
     plain,
   };
 

@@ -42,13 +42,13 @@ const getPropertyAction = (data) => {
   return propertyAction[data.state];
 };
 
-export default (coll) => {
-  const render = (arr, indent) => arr
-    .map((data) => {
-      const state = getPropertyAction(data);
-      return state(data, indent, render);
+export default (tree) => {
+  const render = (data, indent) => data
+    .map((node) => {
+      const state = getPropertyAction(node);
+      return state(node, indent, render);
     })
     .flat()
     .join(separator);
-  return `{${separator}${render(coll, 1)}${separator}}`;
+  return `{${separator}${render(tree, 1)}${separator}}`;
 };

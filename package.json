@@ -1,7 +1,7 @@
 {
   "name": "gendiff",
   "version": "1.0.7",
-  "description": "second project",
+  "description": "Compare two configuration files and output the result in different formats",
   "main": "dist/index.js",
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
