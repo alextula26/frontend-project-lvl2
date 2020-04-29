@@ -1,8 +1,30 @@
+import _ from 'lodash';
+
 const separator = '\n';
 
-const stringify = (data) => (
-  data
-);
+const getValueAction = (val) => {
+  const valueAction = [
+    {
+      check: (value) => _.isObject(value),
+      action: () => '[complex value]',
+    },
+    {
+      check: (value) => typeof value === 'string',
+      action: (value) => `'${value}'`,
+    },
+    {
+      check: (value) => typeof value === 'boolean',
+      action: (value) => value,
+    },
+  ];
+
+  return valueAction.find(({ check }) => check(val));
+};
+
+const stringify = (value) => {
+  const { action } = getValueAction(value);
+  return action(value);
+};
 
 const getPropertyAction = (data) => {
   const propertyAction = {

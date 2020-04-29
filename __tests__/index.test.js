@@ -6,10 +6,12 @@ const expans = ['json', 'yml', 'ini'];
 
 let resultJson;
 let resultRecursion;
+let resultPlain;
 
 beforeEach(() => {
   resultJson = fs.readFileSync(`${testFilesPath}result_json.txt`, 'utf-8');
   resultRecursion = fs.readFileSync(`${testFilesPath}result_recursion.txt`, 'utf-8');
+  resultPlain = fs.readFileSync(`${testFilesPath}result_plain.txt`, 'utf-8');
 });
 
 describe.each(expans)('gendiff %s', (exp) => {
@@ -18,5 +20,6 @@ describe.each(expans)('gendiff %s', (exp) => {
   test('gendiff', () => {
     expect(gendiff(before, after, 'json')).toEqual(resultJson.trim());
     expect(gendiff(before, after, 'recursion')).toEqual(resultRecursion.trim());
+    expect(gendiff(before, after, 'plain')).toEqual(resultPlain.trim());
   });
 });

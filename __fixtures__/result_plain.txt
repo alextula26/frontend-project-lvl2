@@ -1,0 +1,12 @@
+Property 'group1.aaa' was added with value: true
+Property 'group1.bbb' was added with value: 'text 3'
+Property 'group1.ddd' was deleted
+Property 'group1.eee' was changed from [complex value] to false
+Property 'group1.fff' was deleted
+Property 'group1.hhh.key2' was added with value: 'value 2'
+Property 'group1.hhh.key3' was deleted
+Property 'group2.ggg' was deleted
+Property 'group2.kkk' was added with value: 'kkk'
+Property 'group2.nest' was changed from 'str' to [complex value]
+Property 'group3' was deleted
+Property 'group4' was added with value: [complex value]
