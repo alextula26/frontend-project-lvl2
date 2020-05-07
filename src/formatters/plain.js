@@ -26,14 +26,14 @@ const stringify = (value) => {
   return action(value);
 };
 
-const getPropertyAction = (data) => {
+const getPropertyAction = ({ state }) => {
   const propertyAction = {
     changed: (keys, { value, valueOld }) => `Property '${keys.join('.')}' was changed from ${stringify(valueOld)} to ${stringify(value)}`,
     deleted: (keys) => `Property '${keys.join('.')}' was deleted`,
     added: (keys, { value }) => `Property '${keys.join('.')}' was added with value: ${stringify(value)}`,
     children: (keys, { children }, fn) => fn(children, keys),
   };
-  return propertyAction[data.state];
+  return propertyAction[state];
 };
 
 export default (tree) => {

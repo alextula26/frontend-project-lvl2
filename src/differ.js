@@ -34,14 +34,14 @@ const getPropertyActions = (before, after, property) => {
   return propertyActions.find(({ check }) => check(property));
 };
 
-const buildStatDiff = (before, after) => (
+const differ = (before, after) => (
   _.union(_.keys(before), _.keys(after))
     .sort()
     .map((key) => {
       const { state, action } = getPropertyActions(before, after, key);
-      const data = action(key, buildStatDiff);
+      const data = action(key, differ);
       return { key, state, ...data };
     })
 );
 
-export default buildStatDiff;
+export default differ;

@@ -1,6 +1,6 @@
 {
   "name": "gendiff",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Compare two configuration files and output the result in different formats",
   "main": "dist/index.js",
   "bin": {

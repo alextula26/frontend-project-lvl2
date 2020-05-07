@@ -30,7 +30,7 @@ const stringify = (value, indent) => {
   return action(value, indent);
 };
 
-const getPropertyAction = (data) => {
+const getPropertyAction = ({ state }) => {
   const propertyAction = {
     unchanged: ({ key, value }, indent) => `${countSpaces(indent)}  ${key}: ${stringify(value, indent)}`,
     changed: ({ key, value, valueOld }, indent) => [`${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`, `${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`],
@@ -39,7 +39,7 @@ const getPropertyAction = (data) => {
     children: ({ key, children }, indent, fn) => `${countSpaces(indent)}  ${key}: ${['{', fn(children, indent + 1), `${countSpaces(indent)}  }`].join(separator)}`,
   };
 
-  return propertyAction[data.state];
+  return propertyAction[state];
 };
 
 export default (tree) => {

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import program from 'commander';
-import gendiff from '../index.js';
+import genDiff from '../index.js';
 
 program
-  .version('1.0.7', '-V, --version', 'output the version number')
+  .version('1.0.8', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format tree|plain|json', 'json')
   .arguments('<firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) => {
-    const diff = gendiff(firstConfig, secondConfig, program.format);
+    const diff = genDiff(firstConfig, secondConfig, program.format);
     console.log(diff);
   })
   .description('Compares two configuration files and shows a difference.');
