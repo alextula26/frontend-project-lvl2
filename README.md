@@ -16,5 +16,11 @@
 ## Launch compare two flat files the configuration of the ini format and display difference
 [![asciicast](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7.svg)](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7)
 
-## Launch compare two configuration files with a tree structure and display difference
+## Launch compare two configuration files with a tree structure format tree and display difference
 [![asciicast](https://asciinema.org/a/qwEfJhlT1F6egM8V1dU69cBNo.svg)](https://asciinema.org/a/qwEfJhlT1F6egM8V1dU69cBNo)
+
+## Launch compare two configuration files with a tree structure format plain and display difference
+[![asciicast](https://asciinema.org/a/uic3GFvLrgC7Pi5INHDwOk6O0.svg)](https://asciinema.org/a/uic3GFvLrgC7Pi5INHDwOk6O0)
+
+## Launch compare two configuration files with a tree structure format json and display difference
+[![asciicast](https://asciinema.org/a/TF1U4LqnDBgtEmDT9ZlJVBm2v.svg)](https://asciinema.org/a/TF1U4LqnDBgtEmDT9ZlJVBm2v)
