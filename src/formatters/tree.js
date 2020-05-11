@@ -30,12 +30,14 @@ const stringify = (value, indent) => {
   return action(value, indent);
 };
 
+const getDiffToString = (sign, key, value, indent) => `${countSpaces(indent)}${sign} ${key}: ${stringify(value, indent)}`;
+
 const getPropertyAction = ({ state }) => {
   const propertyAction = {
-    unchanged: ({ key, value }, indent) => `${countSpaces(indent)}  ${key}: ${stringify(value, indent)}`,
-    changed: ({ key, value, valueOld }, indent) => [`${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`, `${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`],
-    deleted: ({ key, valueOld }, indent) => `${countSpaces(indent)}- ${key}: ${stringify(valueOld, indent)}`,
-    added: ({ key, value }, indent) => `${countSpaces(indent)}+ ${key}: ${stringify(value, indent)}`,
+    unchanged: ({ key, value }, indent) => getDiffToString(' ', key, value, indent),
+    changed: ({ key, value, valueOld }, indent) => [getDiffToString('-', key, valueOld, indent), getDiffToString('+', key, value, indent)],
+    deleted: ({ key, valueOld }, indent) => getDiffToString('-', key, valueOld, indent),
+    added: ({ key, value }, indent) => getDiffToString('+', key, value, indent),
     children: ({ key, children }, indent, fn) => `${countSpaces(indent)}  ${key}: ${['{', fn(children, indent + 1), `${countSpaces(indent)}  }`].join(separator)}`,
   };
 
