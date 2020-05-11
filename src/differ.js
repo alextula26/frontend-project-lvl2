@@ -1,11 +1,7 @@
 import _ from 'lodash';
 
 const getPropertyActions = (before, after, property) => {
-  const action = (key) => (
-    {
-      value: after[key],
-      valueOld: before[key],
-    });
+  const action = (key) => ({ value: after[key], valueOld: before[key] });
 
   const propertyActions = [
     {
