@@ -11,7 +11,7 @@ const readFile = (pathFile) => {
     content = fs.readFileSync(fullPathFile, 'utf-8');
   } catch (e) {
     if (e.code === 'ENOENT') {
-      console.log('Путь до файл не верный или файл не существует');
+      console.log('The path to the file is invalid or the file does not exist');
     } else {
       throw e;
     }

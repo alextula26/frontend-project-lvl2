@@ -7,11 +7,14 @@
 ## Install project
 ##### make install
 
-## Launch compares two configuration json files and shows a difference
+## Launch compare two flat files the configuration of the JSON format and display difference
 [![asciicast](https://asciinema.org/a/makc0E1gxUSpF20p3PmRsK60k.svg)](https://asciinema.org/a/makc0E1gxUSpF20p3PmRsK60k)
 
-## Launch compares two configuration yml files and shows a difference
+## Launch compare two flat files the configuration of the yml format and display difference
 [![asciicast](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa.svg)](https://asciinema.org/a/e2Kz8leGcN8U62wGvZKeEQlXa)
 
-## Launch compares two configuration ini files and shows a difference
+## Launch compare two flat files the configuration of the ini format and display difference
 [![asciicast](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7.svg)](https://asciinema.org/a/XxVxa0AEKkCJOYYvaB9hyhib7)
+
+## Launch compare two configuration files with a tree structure and display difference
+[![asciicast](https://asciinema.org/a/qwEfJhlT1F6egM8V1dU69cBNo.svg)](https://asciinema.org/a/qwEfJhlT1F6egM8V1dU69cBNo)
