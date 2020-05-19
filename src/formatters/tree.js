@@ -6,28 +6,14 @@ const tabs = 4;
 const countSpaces = (indent) => ((indent > 1) ? ' '.repeat(spaces ** indent + spaces) : ' '.repeat(spaces));
 const countTabs = (indent) => ' '.repeat(tabs * indent);
 
-const getValueAction = (val) => {
-  const valueAction = [
-    {
-      check: (value) => !_.isObject(value),
-      action: (value) => _.identity(value),
-    },
-    {
-      check: (value) => _.isObject(value),
-      action: (value, indent) => {
-        const result = _.keys(value)
-          .map((key) => `${countTabs(indent)}${' '.repeat(4)}${key}: ${value[key]}`);
-        return `{${separator}${result.join(separator)}${separator}${countTabs(indent)}}`;
-      },
-    },
-  ];
-
-  return valueAction.find(({ check }) => check(val));
-};
-
 const stringify = (value, indent) => {
-  const { action } = getValueAction(value);
-  return action(value, indent);
+  if (!_.isObject(value)) {
+    return _.identity(value);
+  }
+
+  const result = _.keys(value)
+    .map((key) => `${countTabs(indent)}${' '.repeat(4)}${key}: ${value[key]}`);
+  return `{${separator}${result.join(separator)}${separator}${countTabs(indent)}}`;
 };
 
 const getDiffToString = (sign, key, value, indent) => `${countSpaces(indent)}${sign} ${key}: ${stringify(value, indent)}`;
