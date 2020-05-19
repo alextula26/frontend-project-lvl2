@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import parser from './parser.js';
+import parse from './parsers.js';
 import genDiff from './differ.js';
-import formatter from './formatters/index.js';
+import getFormatter from './formatters/index.js';
 
 const readFile = (pathFile) => {
   const fullPathFile = path.resolve(process.cwd(), pathFile);
@@ -20,9 +20,9 @@ export default (pathFile1, pathFile2, type) => {
   const extname1 = getExtname(pathFile1);
   const extname2 = getExtname(pathFile2);
 
-  const data1 = parser(content1, extname1);
-  const data2 = parser(content2, extname2);
+  const data1 = parse(content1, extname1);
+  const data2 = parse(content2, extname2);
   const result = genDiff(data1, data2);
 
-  return formatter(result, type);
+  return getFormatter(result, type);
 };

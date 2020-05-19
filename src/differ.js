@@ -1,33 +1,33 @@
 import _ from 'lodash';
 
 const getPropertyActions = (before, after, property) => {
-  const action = (key) => ({ value: after[key], valueOld: before[key] });
+  const getValue = (key) => ({ value: after[key], valueOld: before[key] });
 
   const propertyActions = [
     {
       state: 'added',
       check: (key) => !_.has(before, key) && _.has(after, key),
-      action,
+      getValue,
     },
     {
       state: 'deleted',
       check: (key) => _.has(before, key) && !_.has(after, key),
-      action,
+      getValue,
     },
     {
       state: 'children',
       check: (key) => _.isObject(before[key]) && _.isObject(after[key]),
-      action: (key, fn) => ({ children: fn(before[key], after[key]) }),
+      getValue: (key, fn) => ({ children: fn(before[key], after[key]) }),
     },
     {
       state: 'unchanged',
       check: (key) => before[key] === after[key],
-      action,
+      getValue,
     },
     {
       state: 'changed',
       check: (key) => before[key] !== after[key],
-      action,
+      getValue,
     },
   ];
 
@@ -38,8 +38,8 @@ const differ = (before, after) => (
   _.union(_.keys(before), _.keys(after))
     .sort()
     .map((key) => {
-      const { state, action } = getPropertyActions(before, after, key);
-      const data = action(key, differ);
+      const { state, getValue } = getPropertyActions(before, after, key);
+      const data = getValue(key, differ);
       return { key, state, ...data };
     })
 );

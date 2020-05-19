@@ -2,14 +2,14 @@ import json from './json.js';
 import tree from './tree.js';
 import plain from './plain.js';
 
-const getFormat = (data, type) => {
-  const format = {
+const getFormatter = (data, type) => {
+  const formatters = {
     json,
     tree,
     plain,
   };
 
-  return format[type](data);
+  return formatters[type](data);
 };
 
-export default (data, type) => getFormat(data, type);
+export default (data, type) => getFormatter(data, type);
