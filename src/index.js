@@ -5,19 +5,8 @@ import genDiff from './differ.js';
 import formatter from './formatters/index.js';
 
 const readFile = (pathFile) => {
-  let content;
   const fullPathFile = path.resolve(process.cwd(), pathFile);
-  try {
-    content = fs.readFileSync(fullPathFile, 'utf-8');
-  } catch (e) {
-    if (e.code === 'ENOENT') {
-      console.log('The path to the file is invalid or the file does not exist');
-    } else {
-      throw e;
-    }
-  }
-
-  return content;
+  return fs.readFileSync(fullPathFile, 'utf-8');
 };
 
 const getExtname = (pathFile) => {
