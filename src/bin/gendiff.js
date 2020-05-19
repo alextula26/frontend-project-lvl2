@@ -3,7 +3,7 @@ import program from 'commander';
 import genDiff from '../index.js';
 
 program
-  .version('1.0.8', '-V, --version', 'output the version number')
+  .version('1.0.9', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format [type]', 'output format tree|plain|json', 'json')
   .arguments('<firstConfig> <secondConfig>')

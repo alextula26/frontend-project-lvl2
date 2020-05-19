@@ -1,29 +1,14 @@
-import _ from 'lodash';
-
 const separator = '\n';
 
-const getValueAction = (val) => {
-  const valueAction = [
-    {
-      check: (value) => _.isObject(value),
-      action: () => '[complex value]',
-    },
-    {
-      check: (value) => _.isString(value),
-      action: (value) => `'${value}'`,
-    },
-    {
-      check: (value) => _.isBoolean(value),
-      action: (value) => value,
-    },
-  ];
-
-  return valueAction.find(({ check }) => check(val));
-};
-
 const stringify = (value) => {
-  const { action } = getValueAction(value);
-  return action(value);
+  switch (typeof value) {
+    case 'string':
+      return `'${value}'`;
+    case 'boolean':
+      return value;
+    default:
+      return '[complex value]';
+  }
 };
 
 const getPropertyAction = ({ state }) => {
